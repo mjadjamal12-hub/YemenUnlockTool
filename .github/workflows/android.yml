@@ -1,20 +1,19 @@
-name: Build
-on: [push]
+name:Build
+on:[push]
 jobs:
-  it_builds:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup
-        run: |
-          sudo apt update
-          sudo apt install -y python3-pip build-essential git python3-dev ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev zlib1g-dev
-          pip3 install buildozer cython==0.29.33
-      - name: Build
-        run: |
-          yes | buildozer -v android debug
-      - name: Save
-        uses: actions/upload-artifact@v2
-        with:
-          name: App-APK
-          path: bin/*.apk
+apk:
+runs-on:ubuntu-latest
+steps:
+-uses:actions/checkout@v2
+-name:Setup
+run:pipinstallbuildozercython==0.29.33
+-name:Build
+run:
+sudoaptupdate
+sudoaptinstall-ybuild-essentialgitpython3-devffmpeglibsdl2-devzlib1g-devyes|buildozer-androiddebug
+-name:Upload
+uses:actions/upload
+-artifact@v2
+with:
+name:App-Package
+path:bin/*.apk
